@@ -35,6 +35,11 @@ public class CharacterController {
                 .body("ERROR: " + exception.getMessage());
     }
 
+    @GetMapping(value = "/hello")
+    public String hello() throws Exception {
+        return "hello world";
+    }
+
     @GetMapping(value = "/getAll")
     public List<Character> getAll(@RequestHeader("APIKEY") String apiKey) throws Exception {
         checkApiKey(apiKey);
