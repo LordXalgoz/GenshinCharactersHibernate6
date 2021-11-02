@@ -41,44 +41,32 @@ public class CharacterController {
     }
 
     @GetMapping(value = "/getAll")
-    public List<Character> getAll(@RequestHeader("APIKEY") String apiKey) throws Exception {
-        checkApiKey(apiKey);
-
+    public List<Character> getAll() throws Exception {
         return tableCharacters.findAll();
     }
 
     @GetMapping(value = "/getAllWithCname")
-    public List<Character> getAllWithCname(@RequestHeader("APIKEY") String apiKey) throws Exception {
-        checkApiKey(apiKey);
-
+    public List<Character> getAllWithCname() throws Exception {
         return tableCharacters.findWhereNameStartsFromC();
     }
 
     @GetMapping(value = "/getById/{id}")
-    public Character getById(@RequestHeader("APIKEY") String apiKey, @PathVariable int id) throws Exception {
-        checkApiKey(apiKey);
-
+    public Character getById(@PathVariable int id) throws Exception {
         return tableCharacters.findById(id).get();
     }
 
     @PostMapping(value = "/insertOne")
-    public void insertOne(@RequestHeader("APIKEY") String apiKey, @RequestBody Character character) throws Exception {
-        checkApiKey(apiKey);
-
+    public void insertOne(@RequestBody Character character) throws Exception {
         tableCharacters.save(character);
     }
 
     @DeleteMapping(value = "/deleteById/{id}")
-    public void deleteById(@RequestHeader("APIKEY") String apiKey, @PathVariable int id) throws Exception {
-        checkApiKey(apiKey);
-
+    public void deleteById(@PathVariable int id) throws Exception {
         tableCharacters.deleteById(id);
     }
 
     @PutMapping(value = "/updateById/{id}")
-    public void updateById(@RequestHeader("APIKEY") String apiKey, @PathVariable int id,@RequestBody Character character) throws Exception {
-        checkApiKey(apiKey);
-
+    public void updateById(@PathVariable int id,@RequestBody Character character) throws Exception {
         Character findedCharacter = tableCharacters.findById(id).get();
 
         findedCharacter.name = character.name;
